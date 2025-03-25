@@ -17,10 +17,10 @@ public class Job {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_job;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = false, length = 1000)
     private String description;
 
     public Job() {
