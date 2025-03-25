@@ -3,6 +3,7 @@ package com.example.demo.Models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +13,7 @@ import jakarta.persistence.GenerationType;
 @Table(name = Employee.TABLE_NAME)
 public class Employee {
 
-    public static final String TABLE_NAME = "Employee";
+    public static final String TABLE_NAME = "employee";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +26,8 @@ public class Employee {
     private String last_name;
 
     @ManyToOne
-    @Column(name = "id_job", nullable = false)
-    private int id_job;
+    @JoinColumn(name = "id_job", nullable = false)
+    private Job id_job;
 
     @Column(name = "phone", nullable = false, length = 15, unique = true)
     private String phone;
@@ -45,7 +46,7 @@ public class Employee {
     public Employee(
             String name,
             String last_name,
-            int id_job,
+            Job id_job,
             String phone,
             String image_url,
             String employee_code) {
@@ -82,11 +83,11 @@ public class Employee {
         this.last_name = last_name;
     }
 
-    public int getIdJob() {
+    public Job getIdJob() {
         return id_job;
     }
 
-    public void setIdJob(int id_job) {
+    public void setIdJob(Job id_job) {
         this.id_job = id_job;
     }
 

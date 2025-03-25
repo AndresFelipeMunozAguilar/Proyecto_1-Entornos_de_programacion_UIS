@@ -11,7 +11,7 @@ import jakarta.persistence.Column;
 @Table(name = Job.TABLE_NAME)
 public class Job {
 
-    public static final String TABLE_NAME = "Job";
+    public static final String TABLE_NAME = "job";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
