@@ -5,6 +5,6 @@ import com.example.demo.Models.Employee;
 
 public interface IEmployeeService {
 
-    List<Employee> getEmployees();
+    List<Employee> getAllEmployees();
 
 }
