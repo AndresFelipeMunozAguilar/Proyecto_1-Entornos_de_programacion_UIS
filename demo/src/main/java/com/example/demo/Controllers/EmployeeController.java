@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.Services.EmployeeService;
 import com.example.demo.Models.Employee;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
@@ -25,7 +26,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/getEmployeeByCode/{employeeCode}")
-    public ResponseEntity<Employee> getEmployeeByCode(@RequestParam String employeeCode) {
+    public ResponseEntity<Employee> getEmployeeByCode(@PathVariable String employeeCode) {
         Optional<Employee> employee = employeeService.findByEmployeeCode(employeeCode);
 
         return employee.map(ResponseEntity::ok)
