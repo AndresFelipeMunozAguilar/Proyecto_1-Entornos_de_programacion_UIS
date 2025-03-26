@@ -15,7 +15,8 @@ public class Job {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_job;
+    @Column(name = "id_job", nullable = false)
+    private int idJob;
 
     @Column(name = "name", nullable = false, length = 50)
     private String name;
@@ -27,18 +28,18 @@ public class Job {
         // Constructor vacío
     }
 
-    public Job(int id_job, String name, String description) {
-        this.id_job = id_job;
+    public Job(int idJob, String name, String description) {
+        this.idJob = idJob;
         this.name = name;
         this.description = description;
     }
 
     public int getIdJob() {
-        return id_job;
+        return idJob;
     }
 
-    public void setIdJob(int id_job) {
-        this.id_job = id_job;
+    public void setIdJob(int idJob) {
+        this.idJob = idJob;
     }
 
     public String getName() {

@@ -17,26 +17,27 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_employee;
+    @Column(name = "id_employee", nullable = false)
+    private int idEmployee;
 
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
     @Column(name = "last_name", nullable = false, length = 50)
-    private String last_name;
+    private String lastName;
 
     @ManyToOne
     @JoinColumn(name = "id_job", nullable = false)
-    private Job id_job;
+    private Job idJob;
 
     @Column(name = "phone", nullable = false, length = 15, unique = true)
     private String phone;
 
     @Column(name = "image_url", nullable = false, length = 255)
-    private String image_url;
+    private String imageUrl;
 
     @Column(name = "employee_code", nullable = false, length = 20, unique = true)
-    private String employee_code;
+    private String employeeCode;
 
     // Constructor vacío (obligatorio para JPA)
     public Employee() {
@@ -45,26 +46,26 @@ public class Employee {
     // Constructor con parámetros
     public Employee(
             String name,
-            String last_name,
-            Job id_job,
+            String lastName,
+            Job idJob,
             String phone,
-            String image_url,
-            String employee_code) {
+            String imageUrl,
+            String employeeCode) {
         this.name = name;
-        this.last_name = last_name;
-        this.id_job = id_job;
+        this.lastName = lastName;
+        this.idJob = idJob;
         this.phone = phone;
-        this.image_url = image_url;
-        this.employee_code = employee_code;
+        this.imageUrl = imageUrl;
+        this.employeeCode = employeeCode;
     }
 
     // Getters y Setters
     public int getIdEmployee() {
-        return id_employee;
+        return idEmployee;
     }
 
-    public void setIdEmployee(int id_employee) {
-        this.id_employee = id_employee;
+    public void setIdEmployee(int idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     public String getName() {
@@ -76,19 +77,19 @@ public class Employee {
     }
 
     public String getLastName() {
-        return last_name;
+        return lastName;
     }
 
-    public void setLastName(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Job getIdJob() {
-        return id_job;
+        return idJob;
     }
 
-    public void setIdJob(Job id_job) {
-        this.id_job = id_job;
+    public void setIdJob(Job idJob) {
+        this.idJob = idJob;
     }
 
     public String getPhone() {
@@ -100,18 +101,18 @@ public class Employee {
     }
 
     public String getImageUrl() {
-        return image_url;
+        return imageUrl;
     }
 
-    public void setImageUrl(String image_url) {
-        this.image_url = image_url;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getEmployeeCode() {
-        return employee_code;
+        return employeeCode;
     }
 
-    public void setEmployeeCode(String employee_code) {
-        this.employee_code = employee_code;
+    public void setEmployeeCode(String employeeCode) {
+        this.employeeCode = employeeCode;
     }
 }
