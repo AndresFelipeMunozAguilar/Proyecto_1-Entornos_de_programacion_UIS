@@ -28,7 +28,7 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "id_job", nullable = false)
-    private Job idJob;
+    private Job job;
 
     @Column(name = "phone", nullable = false, length = 15, unique = true)
     private String phone;
@@ -47,13 +47,13 @@ public class Employee {
     public Employee(
             String name,
             String lastName,
-            Job idJob,
+            Job job,
             String phone,
             String imageUrl,
             String employeeCode) {
         this.name = name;
         this.lastName = lastName;
-        this.idJob = idJob;
+        this.job = job;
         this.phone = phone;
         this.imageUrl = imageUrl;
         this.employeeCode = employeeCode;
@@ -84,12 +84,12 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public Job getIdJob() {
-        return idJob;
+    public Job getJob() {
+        return job;
     }
 
-    public void setIdJob(Job idJob) {
-        this.idJob = idJob;
+    public void setJob(Job job) {
+        this.job = job;
     }
 
     public String getPhone() {
