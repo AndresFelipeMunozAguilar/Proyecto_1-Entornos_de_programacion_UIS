@@ -1,6 +1,7 @@
 package com.example.demo.Services;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,15 @@ public class EmployeeService implements IEmployeeService {
         entityManager.refresh(savedEmployee);
 
         return savedEmployee; // Ahora contiene el `employeeCode` generado
+    }
+
+    @Override
+    public void deleteEmployeeByCode(String employeeCode) {
+        if (!employeeRepository.existsByEmployeeCode(employeeCode)) {
+            throw new NoSuchElementException(
+                    "Error: El empleado con código de empleado " + employeeCode + " no existe.");
+        }
+
+        employeeRepository.deleteByEmployeeCode(employeeCode);
     }
 }
