@@ -36,7 +36,7 @@ public class Employee {
     @Column(name = "image_url", nullable = false, length = 255)
     private String imageUrl;
 
-    @Column(name = "employee_code", nullable = false, length = 20, unique = true)
+    @Column(name = "employee_code", length = 20, unique = true)
     private String employeeCode;
 
     // Constructor vacío (obligatorio para JPA)
