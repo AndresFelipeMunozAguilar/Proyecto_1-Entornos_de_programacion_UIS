@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 import com.example.demo.DemoApplication;
 import com.example.demo.InterfaceServices.IEmployeeService;
 import com.example.demo.Repositories.EmployeeRepository;
+import com.example.demo.Repositories.JobRepository;
 import com.example.demo.Models.Employee;
+import com.example.demo.Models.Job;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -21,6 +25,12 @@ public class EmployeeService implements IEmployeeService {
 
     @Autowired
     EmployeeRepository employeeRepository;
+
+    @Autowired
+    JobRepository jobRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager; // Se usa para refrescar la entidad después de guardarla
 
     EmployeeService(DemoApplication demoApplication) {
         this.demoApplication = demoApplication;
@@ -38,6 +48,19 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public Employee createEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+        // Buscar el Job en la base de datos
+        Job job = jobRepository.findById(employee.getJob().getIdJob())
+                .orElseThrow(() -> new RuntimeException("Job not found"));
+
+        // Asignar el Job encontrado a Employee
+        employee.setJob(job);
+
+        // Guardar el empleado
+        Employee savedEmployee = employeeRepository.save(employee);
+
+        // Forzar la sincronización con la base de datos
+        entityManager.refresh(savedEmployee);
+
+        return savedEmployee; // Ahora contiene el `employeeCode` generado
     }
 }
