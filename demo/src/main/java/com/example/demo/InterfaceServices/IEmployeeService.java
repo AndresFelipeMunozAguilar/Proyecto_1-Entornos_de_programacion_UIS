@@ -10,4 +10,6 @@ public interface IEmployeeService {
 
     public Optional<Employee> findByEmployeeCode(String employeeCode);
 
+    public Employee createEmployee(Employee employee);
+
 }
