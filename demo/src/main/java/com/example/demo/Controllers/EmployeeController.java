@@ -14,6 +14,7 @@ import com.example.demo.Services.EmployeeService;
 import com.example.demo.Models.Employee;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,6 +65,26 @@ public class EmployeeController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error interno del servidor.");
+        }
+
+    }
+
+    @DeleteMapping("/deleteByCode/{employeeCode}")
+    public ResponseEntity<String> deleteEmployeeByCode(@PathVariable String employeeCode) {
+
+        try {
+            employeeService.deleteEmployeeByCode(employeeCode);
+
+            return ResponseEntity.ok("Empleado eliminado correctamente.");
+
+        } catch (NoSuchElementException e) {
+
+            return ResponseEntity.status(404).body(e.getMessage());
+
+        } catch (Exception e) {
+
+            return ResponseEntity.status(500).body("Error interno del servidor");
+
         }
 
     }
