@@ -11,4 +11,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     // Método para encontrar un empleado por su código único
     Optional<Employee> findByEmployeeCode(String employeeCode);
 
+    void deleteByEmployeeCode(String employeeCode);
+
+    boolean existsByEmployeeCode(String employeeCode);
+
 }
