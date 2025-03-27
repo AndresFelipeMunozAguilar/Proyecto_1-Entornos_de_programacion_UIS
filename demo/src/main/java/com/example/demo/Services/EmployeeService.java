@@ -35,4 +35,9 @@ public class EmployeeService implements IEmployeeService {
     public Optional<Employee> findByEmployeeCode(String employeeCode) {
         return employeeRepository.findByEmployeeCode(employeeCode);
     }
+
+    @Override
+    public Employee createEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
 }
