@@ -12,4 +12,6 @@ public interface IEmployeeService {
 
     public Employee createEmployee(Employee employee);
 
+    public void deleteEmployeeByCode(String employeeCode);
+
 }
