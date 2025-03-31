@@ -1,8 +1,8 @@
-package com.example.demo.InterfaceServices;
+package com.example.demo.interfaceService;
 
 import java.util.List;
 import java.util.Optional;
-import com.example.demo.Models.Employee;
+import com.example.demo.model.Employee;
 
 public interface IEmployeeService {
 
