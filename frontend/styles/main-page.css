@@ -1,0 +1,9 @@
+#mainHeader {
+    font-weight: 300;
+    /* Texto delgado */
+    color: white;
+    /* Color blanco */
+    font-family: 'Poppins', 'Arial', sans-serif;
+    /* Fuente moderna */
+    font-size: 100rem;
+}
