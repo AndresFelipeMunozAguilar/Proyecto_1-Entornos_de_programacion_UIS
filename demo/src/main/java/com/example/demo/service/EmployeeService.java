@@ -1,4 +1,4 @@
-package com.example.demo.Services;
+package com.example.demo.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DemoApplication;
-import com.example.demo.InterfaceServices.IEmployeeService;
-import com.example.demo.Repositories.EmployeeRepository;
-import com.example.demo.Repositories.JobRepository;
-import com.example.demo.Models.Employee;
-import com.example.demo.Models.Job;
+import com.example.demo.interfaceService.IEmployeeService;
+import com.example.demo.repository.EmployeeRepository;
+import com.example.demo.repository.JobRepository;
+import com.example.demo.model.Employee;
+import com.example.demo.model.Job;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
