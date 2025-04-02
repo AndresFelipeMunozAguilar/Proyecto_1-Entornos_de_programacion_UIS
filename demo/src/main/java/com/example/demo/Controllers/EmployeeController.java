@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/api/employee")
@@ -87,6 +88,23 @@ public class EmployeeController {
 
         }
 
+    }
+
+    @PutMapping("updateEmployeeById/{idEmployee}")
+    public ResponseEntity<?> updateEmployee(
+            @PathVariable int idEmployee,
+            @RequestBody Employee updatedEmployee) {
+
+        Optional<Employee> employeeOptional = employeeService.updateEmployee(idEmployee, updatedEmployee);
+
+        ResponseEntity<?> response = ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Error: No se encontró el empleado con ID " + idEmployee);
+
+        if (employeeOptional.isPresent()) {
+            response = ResponseEntity.ok(employeeOptional.get());
+        }
+
+        return response;
     }
 
 }

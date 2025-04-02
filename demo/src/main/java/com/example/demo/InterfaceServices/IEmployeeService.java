@@ -14,4 +14,6 @@ public interface IEmployeeService {
 
     public void deleteEmployeeByCode(String employeeCode);
 
+    public Optional<Employee> updateEmployee(int idEmployee, Employee employee);
+
 }

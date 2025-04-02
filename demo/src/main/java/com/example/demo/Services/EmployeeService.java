@@ -74,4 +74,25 @@ public class EmployeeService implements IEmployeeService {
 
         employeeRepository.deleteByEmployeeCode(employeeCode);
     }
+
+    @Override
+    public Optional<Employee> updateEmployee(int idEmployee, Employee updatedEmployee) {
+        return employeeRepository.findById(idEmployee).map(existingEmployee -> {
+
+            existingEmployee.setName(updatedEmployee.getName());
+            existingEmployee.setLastName(updatedEmployee.getLastName());
+            existingEmployee.setPhone(updatedEmployee.getPhone());
+            existingEmployee.setImageUrl(updatedEmployee.getImageUrl());
+
+            if ((updatedEmployee.getJob() != null) && ((Integer) updatedEmployee.getJob().getIdJob() != null)) {
+                Optional<Job> jobOptional = jobRepository.findById(
+                        updatedEmployee.getJob().getIdJob());
+
+                jobOptional.ifPresent(existingEmployee::setJob);
+            }
+
+            return employeeRepository.save(existingEmployee);
+
+        });
+    }
 }
