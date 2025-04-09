@@ -33,7 +33,7 @@ function EmployeeComponent(containerId) {
     this.renderEmployees = function (employees) {
         // Creamos un contenedor para las cards, usando clases de Bootstrap
         let row = document.createElement('div');
-        row.className = 'row mt-3 ml-3 mr-3';
+        row.className = 'row mt-3 mx-3 bg-body';
 
         // Recorrer cada objeto empleado y crear su card correspondiente
         employees.forEach(employee => {
@@ -43,19 +43,44 @@ function EmployeeComponent(containerId) {
 
             // Creación de la card usando el formato de Bootstrap
             let card = document.createElement('div');
-            card.className = 'card';
+            card.className = 'card shadow';
 
             // Cuerpo de la card donde se mostrará el nombre
             let cardBody = document.createElement('div');
             cardBody.className = 'card-body';
 
-            // Elemento que muestra el nombre del empleado
-            let nameElement = document.createElement('h5');
-            nameElement.className = 'card-title';
-            nameElement.textContent = employee.name;
+            // Elemento que muestra el nombre completo del empleado
+            let fullNameElement = document.createElement('h4');
+            fullNameElement.className = 'card-title';
+            fullNameElement.textContent = `${employee.name} ${employee.lastName}`;
 
-            // Ensamblamos los elementos
-            cardBody.appendChild(nameElement);
+            // Elemento que muestra el código del empleado
+            let codeElement = document.createElement('h5');
+            codeElement.className = 'card-subtitle mb-2 text-muted';
+            codeElement.textContent = `Código: ${employee.employeeCode}`;
+
+            // Elemento que muestra el trabajo del empleado
+            let jobElement = document.createElement('p');
+            jobElement.className = 'card-text';
+            jobElement.textContent = `Trabajo: ${employee.job.name}`;
+
+            // Elemento que muestra el teléfono del empleado
+            let phoneElement = document.createElement('p');
+            phoneElement.className = 'card-text';
+            phoneElement.textContent = `Teléfono: ${employee.phone}`;
+
+            // Elemento que muestra la imagen del empleado
+            let imageElement = document.createElement('img');
+            imageElement.className = 'card-img-top';
+            imageElement.src = employee.imageUrl;
+            imageElement.alt = `${employee.name} ${employee.lastName} image`;
+
+            // Ensamblamos los nuevos elementos en el cuerpo de la card
+            card.appendChild(imageElement);
+            cardBody.appendChild(fullNameElement);
+            cardBody.appendChild(codeElement);
+            cardBody.appendChild(jobElement);
+            cardBody.appendChild(phoneElement);
             card.appendChild(cardBody);
             col.appendChild(card);
             row.appendChild(col);
