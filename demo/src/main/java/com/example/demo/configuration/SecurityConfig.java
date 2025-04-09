@@ -1,6 +1,5 @@
 package com.example.demo.configuration;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +19,6 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -32,7 +30,8 @@ public class SecurityConfig {
 
         return http.build();
     }
-    //Nos ayuda a tener nuestro propio manejo de credenciales
+
+    // Nos ayuda a tener nuestro propio manejo de credenciales
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
