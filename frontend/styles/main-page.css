@@ -1,0 +1,23 @@
+#mainHeader {
+    font-weight: 300;
+    /* Texto delgado */
+    color: rgb(244, 243, 247);
+    /* Color blanco */
+    font-family: 'Poppins', 'Arial', sans-serif;
+    /* Fuente moderna */
+    font-size: 100rem;
+}
+
+#mainHeader #header-app-logo {
+
+    height: 2.5rem;
+    width: auto;
+    object-fit: contain;
+}
+
+.card .card-img-top {
+    height: 250px;
+    /* Altura fija */
+    object-fit: cover;
+    /* Ajusta la imagen sin deformarla */
+}
