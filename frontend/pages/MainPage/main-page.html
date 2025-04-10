@@ -66,17 +66,20 @@ Esta es la página a la que se ingresa, tras hacer login -->
                             <input type="text" class="form-control" id="phone" name="phone" maxlength="15" required>
                         </div>
 
-                        <div class="dropup d-flex mb-3 ">
+                        <div class="dropup d-flex mb-3">
+                            <input type="hidden" id="form-selected-job" name="job">
+                            <!-- Campo oculto para guardar la selección -->
                             <button class="btn btn-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Seleccione un cargo
                             </button>
                             <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#" data-value="1">UI/UX</a></li>
+                                <li><a class="dropdown-item" href="#" data-value="2">Operativo</a></li>
+                                <li><a class="dropdown-item" href="#" data-value="3">Programador</a></li>
                             </ul>
                         </div>
+
 
                         <div class="mb-3">
                             <label for="imageUrl" class="form-label">URL de Imagen</label>
