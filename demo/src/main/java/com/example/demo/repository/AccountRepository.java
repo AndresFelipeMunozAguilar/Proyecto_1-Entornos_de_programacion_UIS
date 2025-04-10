@@ -12,6 +12,7 @@ import java.util.List;
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
     Account findByEmail(String email);
+
     @Query("SELECT a.email FROM Account a")
     List<String> findAllEmails();
 
