@@ -16,7 +16,9 @@ Esta es la página a la que se ingresa, tras hacer login -->
 
     <link rel="stylesheet" href="../../styles/main-page.css">
 
+    <script src="../../scripts/populateJobDropdown.js" defer></script>
     <script src="../../scripts/createEmployee.js" defer></script>
+
 
     <title>Main Page</title>
 </head>
@@ -63,26 +65,32 @@ Esta es la página a la que se ingresa, tras hacer login -->
 
                         <div class="mb-3">
                             <label for="phone" class="form-label">Teléfono</label>
+                            <!-- Campo de entrada para el número de teléfono del empleado, con un límite de 15 caracteres -->
                             <input type="text" class="form-control" id="phone" name="phone" maxlength="15" required>
                         </div>
 
                         <div class="dropup d-flex mb-3">
+                            <!-- Campo oculto para almacenar el valor seleccionado del cargo -->
                             <input type="hidden" id="form-selected-job" name="job">
-                            <!-- Campo oculto para guardar la selección -->
+                            <!-- Botón desplegable para seleccionar el cargo del empleado -->
                             <button class="btn btn-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Seleccione un cargo
                             </button>
-                            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#" data-value="1">UI/UX</a></li>
-                                <li><a class="dropdown-item" href="#" data-value="2">Operativo</a></li>
-                                <li><a class="dropdown-item" href="#" data-value="3">Programador</a></li>
+                            <!-- Lista de opciones para seleccionar el cargo -->
+                            <!-- Este elemento representa el menú desplegable (dropdown menu) asociado 
+                                al formulario único para la creación de empleados. -->
+                            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1"
+                                id="dropdown-create-employee-menu">
+                                <!-- Cada opción que se inserta desde el archivo "populateJobDropdown"
+                                     representa un cargo con un valor asociado -->
                             </ul>
                         </div>
 
 
                         <div class="mb-3">
                             <label for="imageUrl" class="form-label">URL de Imagen</label>
+                            <!-- Campo de entrada para la URL de la imagen del empleado -->
                             <input type="text" class="form-control" id="imageUrl" name="image_url">
                         </div>
 
