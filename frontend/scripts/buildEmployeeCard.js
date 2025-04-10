@@ -44,6 +44,7 @@ function EmployeeComponent(containerId) {
             // Creación de la card usando el formato de Bootstrap
             let card = document.createElement('div');
             card.className = 'card shadow';
+            card.id = 'employee-card';
 
             // Cuerpo de la card donde se mostrará el nombre
             let cardBody = document.createElement('div');
