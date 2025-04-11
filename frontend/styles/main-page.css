@@ -1,23 +1,87 @@
 #mainHeader {
-    font-weight: 300;
-    /* Texto delgado */
-    color: rgb(244, 243, 247);
-    /* Color blanco */
-    font-family: 'Poppins', 'Arial', sans-serif;
-    /* Fuente moderna */
-    font-size: 100rem;
+    background-color: #3a55eb; /* Color de fondo más atractivo */
+    font-weight: 300; /* Texto delgado */
+    color: rgb(244, 243, 247); /* Color blanco */
+    font-family: 'Poppins', 'Arial', sans-serif; /* Fuente moderna */
+    font-size: 2rem; /* Ajustar tamaño para hacerlo legible */
+    padding: 20px 0; /* Espaciado superior e inferior */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* Línea sutil en la parte inferior */
 }
 
 #mainHeader #header-app-logo {
-
-    height: 2.5rem;
+    height: 3rem; /* Ajustamos el tamaño del logo */
     width: auto;
     object-fit: contain;
+    transition: transform 0.3s ease; /* Transición suave al hacer hover */
+}
+
+#mainHeader #header-app-logo:hover {
+    transform: scale(1.1); /* Efecto de ampliación en hover */
+}
+
+#mainHeader .col-10 h3 {
+    font-size: 2.5rem; /* Tamaño de fuente mayor para el título */
+    font-weight: 500; /* Aumentamos el peso para hacerlo más destacado */
+    letter-spacing: 1px; /* Un poco de espaciado entre letras */
+    margin: 0; /* Sin margen en el título */
+    text-transform: uppercase; /* Transformamos el texto a mayúsculas */
+}
+
+.card {
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil en las tarjetas */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efectos en hover */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Levanta la tarjeta ligeramente */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra en hover */
 }
 
 .card .card-img-top {
-    height: 250px;
-    /* Altura fija */
-    object-fit: cover;
-    /* Ajusta la imagen sin deformarla */
+    height: 250px; /* Altura fija para la imagen */
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    border-top-left-radius: 10px; /* Bordes redondeados en la parte superior */
+    border-top-right-radius: 10px; /* Bordes redondeados en la parte superior */
 }
+
+.card-body {
+    padding: 20px; /* Agregar un poco de espacio en el contenido de la tarjeta */
+}
+
+.card-title {
+    font-size: 1.25rem; /* Título un poco más grande */
+    font-weight: 600; /* Aumentamos el peso del título */
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    color: #6c757d; /* Color gris claro */
+}
+
+.card-text {
+    font-size: 0.9rem; /* Tamaño de texto más pequeño y legible */
+    color: #495057; /* Color gris oscuro */
+}
+
+.btn {
+    border-radius: 5px; /* Botones con bordes redondeados */
+    font-weight: 600; /* Botones con texto más destacado */
+    padding: 0.5rem 1.5rem; /* Botones más grandes y cómodos */
+}
+
+.btn-primary {
+    background-color: #3A55EB; /* Botón primario azul */
+    border: none;
+}
+
+.btn-danger {
+    background-color: #000000; /* Botón de eliminación rojo */
+    border: none;
+}
+
+.btn:hover {
+    opacity: 0.9; /* Efecto de opacidad en hover */
+}
+
