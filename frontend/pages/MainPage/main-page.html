@@ -16,20 +16,19 @@ Esta es la página a la que se ingresa, tras hacer login -->
 
     <link rel="stylesheet" href="../../styles/main-page.css">
 
-    <script src="../../scripts/populateJobDropdown.js" defer></script>
-    <script src="../../scripts/createEmployee.js" defer></script>
 
+    <script src="../../scripts/createEmployee.js" type="module" defer></script>
+    <script src="../../scripts/populateJobDropdown.js" type="module" defer></script>
 
     <title>Main Page</title>
 </head>
-
 
 <body>
 
     <!-- contenedor para el botón de crear empleado  -->
     <div class="container-fluid my-3">
         <div class="row justify-content-end">
-            <div class="col-auto">
+            <div class="col-auto mr-3">
                 <!-- botón de crear empleado  -->
                 <button type="button" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal"
                     data-bs-target="#create-employee-modal">+ Nuevo
@@ -55,12 +54,13 @@ Esta es la página a la que se ingresa, tras hacer login -->
                     <form id="create-employee-form">
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" id="name" name="name" maxlength="50" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="lastName" class="form-label">Apellido</label>
-                            <input type="text" class="form-control" id="lastName" name="last-name" required>
+                            <input type="text" class="form-control" id="lastName" name="last-name" maxlength="50"
+                                required>
                         </div>
 
                         <div class="mb-3">
@@ -68,30 +68,39 @@ Esta es la página a la que se ingresa, tras hacer login -->
                             <!-- Campo de entrada para el número de teléfono del empleado, con un límite de 15 caracteres -->
                             <input type="text" class="form-control" id="phone" name="phone" maxlength="15" required>
                         </div>
+                        <div class="mb-3">
 
-                        <div class="dropup d-flex mb-3">
-                            <!-- Campo oculto para almacenar el valor seleccionado del cargo -->
-                            <input type="hidden" id="form-selected-job" name="job">
-                            <!-- Botón desplegable para seleccionar el cargo del empleado -->
-                            <button class="btn btn-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Seleccione un cargo
-                            </button>
-                            <!-- Lista de opciones para seleccionar el cargo -->
-                            <!-- Este elemento representa el menú desplegable (dropdown menu) asociado 
-                                al formulario único para la creación de empleados. -->
-                            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1"
-                                id="dropdown-create-employee-menu">
-                                <!-- Cada opción que se inserta desde el archivo "populateJobDropdown"
-                                     representa un cargo con un valor asociado -->
-                            </ul>
+                            <label for="form-selected-job" class="form-label">Trabajo</label>
+                            <div class="dropup d-flex mb-3">
+
+                                <!-- Campo oculto para almacenar el valor seleccionado del cargo -->
+                                <input type="hidden" id="form-selected-job" name="job">
+                                <!-- Botón desplegable para seleccionar el cargo del empleado -->
+                                <button class="btn btn-primary dropdown-toggle w-100" type="button"
+                                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Seleccione un cargo
+                                </button>
+                                <!-- Lista de opciones para seleccionar el cargo -->
+                                <!-- Este elemento representa el menú desplegable (dropdown menu) asociado
+                                    al formulario único para la creación de empleados. -->
+                                <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1"
+                                    id="dropdown-create-employee-menu">
+                                    <!-- Cada opción que se inserta desde el archivo "populateJobDropdown"
+                                         representa un cargo con un valor asociado -->
+                                </ul>
+
+
+                            </div>
                         </div>
+
+
 
 
                         <div class="mb-3">
                             <label for="imageUrl" class="form-label">URL de Imagen</label>
                             <!-- Campo de entrada para la URL de la imagen del empleado -->
-                            <input type="text" class="form-control" id="imageUrl" name="image_url">
+                            <input type="text" class="form-control" id="imageUrl" name="image_url" maxlength="255"
+                                required>
                         </div>
 
                         <div class="modal-footer pb-0">
@@ -126,7 +135,7 @@ Esta es la página a la que se ingresa, tras hacer login -->
         crossorigin="anonymous"></script>
 
     <!-- Añadir el script reutilizable para construir cards de empleados, basados en la api -->
-    <script src="../../scripts/buildEmployeeCard.js"></script>
+    <script src="../../scripts/buildEmployeeCard.js" type="module"></script>
 
     <!-- Añdir el script para usar axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
