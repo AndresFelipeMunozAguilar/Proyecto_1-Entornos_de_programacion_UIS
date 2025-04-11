@@ -26,7 +26,7 @@ El proyecto está organizado en las siguientes carpetas principales:
 - **JavaScript**: Para la lógica del lado del cliente.
 - **Bootstrap**: Para el diseño responsivo y componentes predefinidos.
 
-## Objetivos de las Carpetas
+## Contenido de las Carpetas
 
 ### Carpeta `frontend`
 Guarda los archivos necesarios para renderizar las vistas y manejar la interacción del usuario. Dentro de esta carpeta se encuentran:
