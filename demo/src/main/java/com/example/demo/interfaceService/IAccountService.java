@@ -14,4 +14,5 @@ public interface IAccountService {
 
     public void deleteAccount(Integer accountId);
 
+    public String verify(Account account);
 }

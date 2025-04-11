@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/account")
 public class AccountController {
 
@@ -22,8 +23,14 @@ public class AccountController {
     public List<String> getAllEmails() {
         return accountService.getAllEmails();
     }
-    // Crear una nueva cuenta
-    @PostMapping
+
+    @PostMapping("/login")
+    public  String login(@RequestBody Account account) {
+        return accountService.verify(account);
+    }
+
+
+    @PostMapping("/register")
     public ResponseEntity<?> createAccount(@RequestBody Account account) {
         try {
             Account newAccount = accountService.createAccount(account);
@@ -33,6 +40,7 @@ public class AccountController {
         } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("El empleado ya tiene una cuenta registrada.");
         } catch (Exception e) {
+            e.printStackTrace(); 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error inesperado.");
         }
     }
