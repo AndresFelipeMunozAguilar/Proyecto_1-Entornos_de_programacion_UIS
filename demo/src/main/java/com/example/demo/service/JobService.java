@@ -19,9 +19,9 @@ public class JobService implements IJobService {
     JobRepository jobRepository;
 
     @Override
-    public List<String> getAllJobs(){
+    public List<Job> getAllJobs() {
 
-        return jobRepository.findAllJobs();
+        return jobRepository.findAll();
 
     }
 
@@ -32,23 +32,22 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public Job updateJob(Integer id,Job jobDetails) {
+    public Job updateJob(Integer id, Job jobDetails) {
 
-        Job job = jobRepository.findById(id).
-                orElseThrow(()-> new NoSuchElementException("Cuenta no encontrada con ID: " + id));
+        Job job = jobRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Cuenta no encontrada con ID: " + id));
 
-        //Actualizar los campos
+        // Actualizar los campos
 
         job.setName(jobDetails.getName());
         job.setDescription(jobDetails.getDescription());
-
 
         return jobRepository.save(job);
     }
 
     @Override
     public Job createJob(Job job) {
-        if(jobRepository.existsByName(job.getName())) {
+        if (jobRepository.existsByName(job.getName())) {
             throw new IllegalArgumentException("Ya existe un trabajo con ese nombre" + job.getName());
         }
         return jobRepository.save(job);
@@ -57,14 +56,11 @@ public class JobService implements IJobService {
     @Override
     public void deleteJob(Integer jobId) {
 
-        if(!jobRepository.existsById(jobId)) {
+        if (!jobRepository.existsById(jobId)) {
             throw new IllegalArgumentException("No existe un trabajo con ese ID: " + jobId);
         }
 
         jobRepository.deleteById(jobId);
     }
-
-
-
 
 }

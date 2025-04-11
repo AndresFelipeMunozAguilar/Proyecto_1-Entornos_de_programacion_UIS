@@ -19,39 +19,36 @@ public class JobController {
         this.jobservice = jobservice;
     }
 
-    //Obtener todos los trabajos
+    // Obtener todos los trabajos
     @GetMapping
-    public List<String> getAllJobs() {
+    public List<Job> getAllJobs() {
 
         return jobservice.getAllJobs();
 
     }
 
-    //Obtener trabajo por id
+    // Obtener trabajo por id
     @GetMapping("/{id}")
     public Optional<Job> getJob(@PathVariable Integer id) {
         return jobservice.getJob(id);
     }
 
-    //Crear un nuevo trabajo
+    // Crear un nuevo trabajo
     @PostMapping
     public Job createJob(@RequestBody Job jobDetails) {
         return jobservice.createJob(jobDetails);
     }
 
-    //Actualizar nombre y descripción de un trabajo
+    // Actualizar nombre y descripción de un trabajo
     @PutMapping("/{id}")
     public Job updateJob(@PathVariable Integer id, @RequestBody Job jobDetails) {
         return jobservice.updateJob(id, jobDetails);
     }
 
-    //Eliminar un trabajo
+    // Eliminar un trabajo
     @DeleteMapping("/{id}")
-    public void deleteJob(@PathVariable Integer id){
+    public void deleteJob(@PathVariable Integer id) {
         jobservice.deleteJob(id);
     }
-
-
-
 
 }
