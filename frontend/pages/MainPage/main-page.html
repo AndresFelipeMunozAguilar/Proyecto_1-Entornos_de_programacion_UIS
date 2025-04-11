@@ -104,8 +104,8 @@ Esta es la página a la que se ingresa, tras hacer login -->
                         </div>
 
                         <div class="modal-footer pb-0">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Crear</button>
                         </div>
                     </form>
 
@@ -115,11 +115,65 @@ Esta es la página a la que se ingresa, tras hacer login -->
         </div>
     </div>
 
-
-
-
-
-
+    <!-- Modal de actualización de empleado -->
+    <div class="modal" id="update-employee-modal" data-bs-backdrop="static" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Actualizar empleado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="update-employee-form">
+                        <!-- Campos del formulario (idénticos al formulario de creación) -->
+                        <!-- Precargar los valores del empleado en estos campos -->
+                        <input type="hidden" id="update-employee-id" name="idEmployee">
+                        <div class="mb-3">
+                            <label for="update-name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="update-name" name="name" maxlength="50"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-lastName" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" id="update-lastName" name="last-name" maxlength="50"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-phone" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="update-phone" name="phone" maxlength="15"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-form-selected-job" class="form-label">Trabajo</label>
+                            <div class="dropup d-flex mb-3">
+                                <!-- Campo oculto para almacenar el valor seleccionado del cargo -->
+                                <input type="hidden" id="update-form-selected-job" name="job">
+                                <!-- Botón desplegable para seleccionar el cargo -->
+                                <button class="btn btn-primary dropdown-toggle w-100" type="button"
+                                    id="update-dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Seleccione un cargo
+                                </button>
+                                <!-- Lista de opciones para seleccionar el cargo -->
+                                <ul class="dropdown-menu w-100" aria-labelledby="update-dropdownMenuButton"
+                                    id="update-dropdown-job-menu">
+                                    <!-- Opciones cargadas dinámicamente -->
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-imageUrl" class="form-label">URL de Imagen</label>
+                            <input type="text" class="form-control" id="update-imageUrl" name="image_url"
+                                maxlength="255" required>
+                        </div>
+                        <div class="modal-footer pb-0">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ======================= Scripts section ======================= -->
     <!-- Optional JavaScript -->
