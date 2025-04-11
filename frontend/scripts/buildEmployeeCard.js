@@ -166,6 +166,7 @@ export class EmployeeComponent {
         });
 
         // Manejar el envío del formulario de actualización
+        // Manejar el envío del formulario de actualización
         document.getElementById('update-employee-form').addEventListener('submit', (e) => {
             e.preventDefault();
 
@@ -180,7 +181,13 @@ export class EmployeeComponent {
 
             console.log('Empleado actualizado:', updatedEmployee);
 
-            axios.put(`${host}:${port}${updateEmployeeEndpoint}${updatedEmployee.idEmployee}`, updatedEmployee)
+            const token = localStorage.getItem("jwt");
+
+            axios.put(`${host}:${port}${updateEmployeeEndpoint}${updatedEmployee.idEmployee}`, updatedEmployee, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
                 .then(() => {
                     alert('Empleado actualizado exitosamente.');
                     this.init(); // Recargar la lista de empleados
@@ -191,6 +198,7 @@ export class EmployeeComponent {
                     alert('No se pudo actualizar el empleado. Por favor, inténtalo nuevamente.');
                 });
         });
+
     }
 }
 
