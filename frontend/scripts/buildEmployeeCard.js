@@ -4,7 +4,8 @@ export class EmployeeComponent {
         // Variables para configurar la conexión con la API.
         const host = "http://localhost";
         const port = "8080";
-        const endpoint = '/api/employee/getAllEmployees';
+        const getEmployeesEndpoint = '/api/employee/getAllEmployees';
+        const deleteEmployeeEndpoint = '/api/employee/deleteByCode/';
 
         // Referencia al contenedor donde se renderizarán las tarjetas.
         this.container = document.getElementById(containerId);
@@ -15,7 +16,7 @@ export class EmployeeComponent {
             this.container.innerHTML = '<p>Cargando empleados...</p>';
 
             // Realizar una solicitud a la API para obtener los empleados.
-            axios.get(`${host}:${port}${endpoint}`)
+            axios.get(`${host}:${port}${getEmployeesEndpoint}`)
                 .then(response => {
                     // Si la solicitud es exitosa, renderizar las tarjetas con los datos obtenidos.
                     console.log('Empleados obtenidos:', response.data);
@@ -51,15 +52,15 @@ export class EmployeeComponent {
                 fullNameElement.textContent = `${employee.name} ${employee.lastName}`;
 
                 let codeElement = document.createElement('h5');
-                codeElement.className = 'card-subtitle mb-2 text-muted';
+                codeElement.className = 'card-subtitle mb-3 text-muted';
                 codeElement.textContent = `Código: ${employee.employeeCode}`;
 
                 let jobElement = document.createElement('p');
-                jobElement.className = 'card-text';
+                jobElement.className = 'card-text mb-1';
                 jobElement.textContent = `Trabajo: ${employee.job.name}`;
 
                 let phoneElement = document.createElement('p');
-                phoneElement.className = 'card-text';
+                phoneElement.className = 'card-text mb-1';
                 phoneElement.textContent = `Teléfono: ${employee.phone}`;
 
                 let imageElement = document.createElement('img');
@@ -67,12 +68,46 @@ export class EmployeeComponent {
                 imageElement.src = employee.imageUrl;
                 imageElement.alt = `${employee.name} ${employee.lastName} image`;
 
+                // Crear un contenedor para los botones de acción (Actualizar y Eliminar).
+                let actionContainer = document.createElement('div');
+                actionContainer.className = 'd-flex justify-content-end  pt-2';
+
+                // Botón para actualizar la información del empleado.
+                let updateButton = document.createElement('button');
+                updateButton.className = 'btn btn-primary me-3';
+                updateButton.textContent = 'Actualizar';
+
+                // Botón para eliminar al empleado.
+                let deleteButton = document.createElement('button');
+                deleteButton.className = 'btn btn-danger';
+                deleteButton.textContent = 'Eliminar';
+
+                // Agregar evento de clic al botón "Eliminar".
+                deleteButton.addEventListener('click', () => {
+                    if (confirm(`¿Estás seguro de que deseas eliminar al empleado con código ${employee.employeeCode}?`)) {
+                        axios.delete(`${host}:${port}${deleteEmployeeEndpoint}${employee.employeeCode}`)
+                            .then(() => {
+                                alert('Empleado eliminado exitosamente.');
+                                this.init(); // Recargar la lista de empleados
+                            })
+                            .catch(error => {
+                                console.error('Error al eliminar el empleado:', error);
+                                alert('No se pudo eliminar el empleado. Por favor, inténtalo nuevamente.');
+                            });
+                    }
+                });
+
+                // Agregar los botones al contenedor de acciones.
+                actionContainer.appendChild(updateButton);
+                actionContainer.appendChild(deleteButton);
+
                 // Ensamblar los elementos en la tarjeta y agregarla al contenedor.
                 card.appendChild(imageElement);
                 cardBody.appendChild(fullNameElement);
                 cardBody.appendChild(codeElement);
                 cardBody.appendChild(jobElement);
                 cardBody.appendChild(phoneElement);
+                cardBody.appendChild(actionContainer); // Agregar el contenedor de acciones al cuerpo de la tarjeta.
                 card.appendChild(cardBody);
                 col.appendChild(card);
                 row.appendChild(col);
