@@ -1,47 +1,75 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Inicializar el formulario de creación de empleado
-    document.getElementById('create-employee-form').addEventListener('submit', function (e) {
-        // e.preventDefault(); // Previene el recargo de la página
+(() => {
+    // Variables para configurar la conexión con la API.
+    const host = "http://localhost";
+    const port = "8080";
+    const endpoint = "/api/employee/createEmployee";
 
-        const employee = {
-            name: document.getElementById('name').value,
-            lastName: document.getElementById('lastName').value,
-            phone: document.getElementById('phone').value,
-            jobId: document.getElementById('form-selected-job').value,
-            imageUrl: document.getElementById('imageUrl').value,
-        };
+    // Esperar a que el DOM esté completamente cargado antes de ejecutar el código.
+    document.addEventListener("DOMContentLoaded", () => {
+        // Agregar un evento al formulario para manejar el envío de datos.
+        document.getElementById('create-employee-form').addEventListener('submit', function (e) {
+            // Validar que se haya seleccionado un trabajo antes de enviar el formulario.
+            const jobInput = document.getElementById('form-selected-job');
+            const jobLabel = document.querySelector('label[for="form-selected-job"]');
 
-        console.log("Datos del empleado:", employee);
+            if (!jobInput.value) {
+                // Mostrar un mensaje de error si no se seleccionó un trabajo.
+                alert("Por favor, selecciona un trabajo antes de continuar.");
+                jobLabel.classList.add('text-danger');
+                jobLabel.classList.remove('form-label');
+                e.preventDefault();
+                return;
+            } else {
+                // Restaurar el estilo del label si la validación es exitosa.
+                jobLabel.classList.remove('text-danger');
+                jobLabel.classList.add('form-label');
+            }
 
-        // Aquí usarás axios para enviar los datos al endpoint que especifiques
-        // axios.post('http://localhost:8080/api/employee/addEmployee', employee)
-        //   .then(response => console.log("Empleado creado:", response.data))
-        //   .catch(error => console.error("Error al crear empleado:", error));
-    });
+            // Crear un objeto con los datos del empleado a partir del formulario.
+            const employee = {
+                name: document.getElementById('name').value,
+                lastName: document.getElementById('lastName').value,
+                job: {
+                    idJob: parseInt(document.getElementById('form-selected-job').value, 10)
+                },
+                phone: document.getElementById('phone').value,
+                imageUrl: document.getElementById('imageUrl').value,
+            };
 
+            // Enviar los datos del empleado a la API mediante una solicitud POST.
+            axios.post(`${host}:${port}${endpoint}`, employee)
+                .then(response => {
+                    // Mostrar un mensaje de éxito y recargar la página.
+                    console.log("Empleado creado exitosamente:", response.data);
+                    alert("Empleado creado exitosamente.");
+                    window.location.reload();
+                })
+                .catch(error => {
+                    // Mostrar un mensaje de error si la solicitud falla.
+                    console.error("Error al crear empleado:", error);
+                    alert("Error al crear empleado. Por favor, revisa los datos e inténtalo nuevamente.");
+                });
 
+            // Prevenir el envío predeterminado del formulario.
+            e.preventDefault();
+        });
 
-    // Función para cambiar el contenido del dropdown button, 
-    // basado en la elección del usuario
-    // Escucha los clics en los ítems del dropdown
-    document.querySelectorAll('.dropdown-item').forEach(item => {
-        item.addEventListener('click', function (event) {
-            event.preventDefault();
+        // Manejar la selección de un trabajo en el menú desplegable.
+        const dropdownMenu = document.getElementById('dropdown-create-employee-menu');
+        dropdownMenu.addEventListener('click', function (event) {
+            if (event.target.classList.contains('dropdown-item')) {
+                event.preventDefault();
 
-            const selectedValue = this.getAttribute('data-value');
-            const selectedValueText = this.textContent.trim();
-            const button = document.getElementById('dropdownMenuButton1');
+                // Actualizar el botón y el campo oculto con el trabajo seleccionado.
+                const selectedValue = event.target.getAttribute('data-value');
+                const selectedValueText = event.target.textContent.trim();
+                const button = document.getElementById('dropdownMenuButton1');
 
-            /**
-             * Recupera el elemento de entrada oculto utilizado para almacenar 
-             * la información del trabajo seleccionado en el formulario. Este 
-             * elemento es crucial para actualizar dinámicamente el texto del 
-             * botón de modo que refleje el nombre trabajo seleccionado.
-             */
-            const hiddenInput = document.getElementById('form-selected-job');
+                const hiddenInput = document.getElementById('form-selected-job');
 
-            button.textContent = `Cargo seleccionado: ${selectedValueText}`;
-            hiddenInput.value = selectedValue;
+                button.textContent = `Cargo seleccionado: ${selectedValueText}`;
+                hiddenInput.value = selectedValue;
+            }
         });
     });
-});
+})();
