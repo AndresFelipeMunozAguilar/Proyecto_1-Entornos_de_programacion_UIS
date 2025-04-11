@@ -47,3 +47,41 @@ Contiene el backend del proyecto. Dentro de esta carpeta se encuentran:
 
 ### Carpeta `target`
 Generada automáticamente por Maven, contiene los archivos compilados y empaquetados del proyecto. Esta carpeta no debe ser modificada manualmente.
+
+## Cómo Ejecutar el Proyecto
+
+Para ejecutar el proyecto correctamente, siga los pasos a continuación:
+
+### Requisitos Previos
+1. **Visual Studio Code (VS Code)**: Asegúrese de tener instalado VS Code en su sistema.
+2. **Extensión Live Server**: Instale la extensión Live Server en VS Code.
+3. **Java JDK**: Asegúrese de tener instalado Java Development Kit (JDK) en su sistema.
+4. **Maven**: Verifique que Apache Maven esté instalado y configurado en su sistema.
+
+### Pasos para Ejecutar el Proyecto
+
+#### 1. Ejecutar el Frontend
+1. Abra la carpeta `frontend` del proyecto en VS Code.
+2. Localice el archivo `index.html`.
+3. Haga clic derecho sobre el archivo `index.html` y seleccione la opción **"Open with Live Server"**.
+4. Esto abrirá el archivo en su navegador predeterminado.
+
+#### 2. Ejecutar el Backend
+1. Navegue a la carpeta `demo` del proyecto.
+2. Abra una ventana de **cmd** (símbolo del sistema) con privilegios de administrador.
+3. Ejecute el siguiente comando para iniciar el backend:
+    ```bash
+    mvn spring-boot:run
+    ```
+4. Espere a que el servidor Spring Boot se inicie correctamente.
+
+#### 3. Iniciar Sesión y Usar la Aplicación
+1. Una vez que el frontend y el backend estén en ejecución, abra el navegador donde se cargó el `index.html`.
+2. Inicie sesión utilizando las siguientes credenciales de prueba:
+    - **Correo electrónico**: `prueba@email.com`
+    - **Contraseña**: `1234`
+3. Use los botones disponibles en la interfaz para gestionar la información de los empleados.
+
+### Notas Adicionales
+- Asegúrese de que el puerto utilizado por Live Server no entre en conflicto con el puerto del backend (por defecto, el backend usa el puerto `8080`).
+- Si encuentra problemas, revise los logs del backend en la consola para identificar posibles errores.
