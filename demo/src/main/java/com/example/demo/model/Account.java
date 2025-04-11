@@ -17,6 +17,19 @@ public class Account {
     @JoinColumn(name = "id_employee", nullable = false)
     private Employee id_employee;
 
+
+    public Account() {
+
+    }
+
+    public Account(int id_acount, String email, String password, Employee id_employee) {
+        this.id_acount = id_acount;
+        this.email = email;
+        this.password = password;
+        this.id_employee = id_employee;
+    }
+
+
     public int getId_acount() {
         return id_acount;
     }

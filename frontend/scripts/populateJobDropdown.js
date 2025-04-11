@@ -6,13 +6,24 @@
 
     // Esperar a que el DOM esté completamente cargado antes de ejecutar el código.
     document.addEventListener("DOMContentLoaded", () => {
+        // Obtener el token del almacenamiento local.
+        const token = localStorage.getItem("jwt");
+        if (!token) {
+            console.error("Token JWT no encontrado en localStorage.");
+            return;
+        }
+
         // Obtener el menú desplegable donde se insertarán los trabajos para la creación
         const createDropdownMenu = document.getElementById("dropdown-create-employee-menu");
         // Obtener el menú desplegable donde se insertarán los trabajos para la actualización
         const updateDropdownMenu = document.getElementById("update-dropdown-job-menu");
 
         // Realizar una solicitud a la API para obtener los trabajos disponibles
-        axios.get(`${host}:${port}${endpoint}`)
+        axios.get(`${host}:${port}${endpoint}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then(response => {
                 const jobs = response.data.map(job => ({
                     id: job.idJob,
